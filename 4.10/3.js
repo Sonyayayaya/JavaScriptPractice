@@ -13,9 +13,11 @@ for (i = 0; i < lenght; i++) {
     array[number] = temp;
 }
 
-for (i = 0; i < lenght; i++) {
-    if (array[i] === n) {
-        console.log(array, 'n =', n, '; индекс элемента =', i)
-    } 
-}
+index = array.findIndex((el) => el === n)
+console.log(array, 'n =', n, '; индекс элемента =', index)
+// for (i = 0; i < lenght; i++) {
+//     if (array[i] === n) {
+//         console.log(array, 'n =', n, '; индекс элемента =', i)
+//     } 
+// }
 

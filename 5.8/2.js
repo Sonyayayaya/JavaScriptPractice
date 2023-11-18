@@ -5,13 +5,17 @@ let blackList = ['jsfunc@mail.ru','goodday@day.ru']
 let adoptedList = []
 
 function filter(whiteList, blackList) {
-    for (let i = 0; i < whiteList.length; i++) {
-        if (!blackList.includes(whiteList[i])){
-                adoptedList.push(whiteList[i])
-        }
-    }
-  return adoptedList
+  return whiteList.filter((word) => !blackList.includes(word));
 }
+
+// function filter(whiteList, blackList) {
+//     for (let i = 0; i < whiteList.length; i++) {
+//         if (!blackList.includes(whiteList[i])){
+//                 adoptedList.push(whiteList[i])
+//         }
+//     }
+//   return adoptedList
+// }
 
 let result = filter(whiteList, blackList)
 console.log(result)

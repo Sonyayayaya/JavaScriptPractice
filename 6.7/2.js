@@ -8,12 +8,13 @@ let allUsers=[
 
 function getOlderUserArray(allUsers){
     let name
-    for (i = 0; i < allUsers.length - 1; i++){
-            if (allUsers[i + 1].age > allUsers[i].age){
-                name = allUsers[i + 1].name
-            }
-    }
-    return name
+
+    // for (i = 0; i < allUsers.length - 1; i++){
+    //         if (allUsers[i + 1].age > allUsers[i].age){
+    //             name = allUsers[i + 1].name
+    //         }
+    // }
+    return allUsers.sort().age
 }
 
 let result = getOlderUserArray(allUsers)
