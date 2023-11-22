@@ -6,10 +6,12 @@
         return appTitle;                                // возвращаем
     }
 
-     session = [];
+    session = [];
     let storageItems = readInStorage(); // считываем из списка
     let sessionItems = (storageItems.length === 0) ? [] : storageItems;
-    sessionItems.forEach(element => createTodoItem(element.name, element.status));   
+    sessionItems.forEach((element) => {
+        createTodoItem(element.name, element.status)
+    });   
     // sessionItems хранит данные localStorage - проверила
     // цикл Foreach работает на число длины записей в localStorage - проверила
     // element.name, element.status действительно хранят имя и статус дела - проверила
@@ -56,49 +58,7 @@
         };
     };
     
-    function createTodoApp(container, title  = 'Список дел', listName){
-        let todoAppTitle = createAppTitle(title);
-        let todoItemForm = createTodoItemForm();           // возвращаем объект
-        let todoList = createTodoList();
-
-        container.append(todoAppTitle);
-        container.append(todoItemForm.form);               // т.к. это объект, берем у него форму
-        container.append(todoList);
-
-        //браузер создаёт событие submit на форме при нажатии на Enter или на кнопку создания дела
-        todoItemForm.form.addEventListener('submit', function(e) {
-            
-            e.preventDefault();               //строка предотвращает стандартное поведение браузера(перезагрузку страницы при отправке формы)
-            
-            let todoItem = createTodoItem(todoItemForm.input.value);
-            writeInStorage(); // добавляем id, name и статус в список дел в виде объекта
-
-            todoItem.doneButton.addEventListener('click', function(){
-                done = todoItem.item.classList.toggle('list-group-item-success');
-                statusTask = session.find((task) => task.id == id) // находим нужный элемент
-                statusTask.status = !statusTask.status // переключаем по id
-                writeInStorage()
-                // todoItem.item.classList.toggle('list-group-item-success'); //красит в зеленый
-            });
-
-            todoItem.deleteButton.addEventListener('click', function() {
-                if (!confirm('Вы уверены?')) return;
-
-                index = session.findIndex((task) => task.id == id) //находим нужный элемент
-                console.log(index)
-                session.splice(index, 1); // начиная с элемента, содержащего index удалить 1 элемент
-                item.remove();
-                writeInStorage(); // изменяем LocalStorage после удаления
-            });
-
-            if(!todoItemForm.input.value){    // если внутри input нет значения, просто возвращаемся
-                return;
-            }
-            
-            todoList.append(todoItem.item);
-            todoItemForm.input.value = '';    //стираем написанное в строке перед созданием нового элемента
-        });
-    }     
+       
     
     //создаём и возвращаем список для элементов        
     function createTodoList() {
@@ -145,5 +105,49 @@
            deleteButton,
         };
     }
+    
+    function createTodoApp(container, title  = 'Список дел', listName) {
+        let todoAppTitle = createAppTitle(title);
+        let todoItemForm = createTodoItemForm();           // возвращаем объект
+        let todoList = createTodoList();
+
+        container.append(todoAppTitle);
+        container.append(todoItemForm.form);               // т.к. это объект, берем у него форму
+        container.append(todoList);
+
+        //браузер создаёт событие submit на форме при нажатии на Enter или на кнопку создания дела
+        todoItemForm.form.addEventListener('submit', function(e) {
+            
+            e.preventDefault();               //строка предотвращает стандартное поведение браузера(перезагрузку страницы при отправке формы)
+            
+            let todoItem = createTodoItem(todoItemForm.input.value);
+            writeInStorage(); // добавляем id, name и статус в список дел в виде объекта
+
+            todoItem.doneButton.addEventListener('click', function(){
+                done = todoItem.item.classList.toggle('list-group-item-success');
+                statusTask = session.find((task) => task.id == id) // находим нужный элемент
+                statusTask.status = !statusTask.status // переключаем по id
+                writeInStorage()
+                // todoItem.item.classList.toggle('list-group-item-success'); //красит в зеленый
+            });
+
+            todoItem.deleteButton.addEventListener('click', function() {
+                if (!confirm('Вы уверены?')) return;
+
+                index = session.findIndex((task) => task.id == id) //находим нужный элемент
+                console.log(index)
+                session.splice(index, 1); // начиная с элемента, содержащего index удалить 1 элемент
+                item.remove();
+                writeInStorage(); // изменяем LocalStorage после удаления
+            });
+
+            if(!todoItemForm.input.value){    // если внутри input нет значения, просто возвращаемся
+                return;
+            }
+            
+            todoList.append(todoItem.item);
+            todoItemForm.input.value = '';    //стираем написанное в строке перед созданием нового элемента
+        });
+    }  
     window.createTodoApp = createTodoApp;
 })();
