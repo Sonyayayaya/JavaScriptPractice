@@ -18,11 +18,14 @@ function shuffle(arr) {
 }
 
 // Этап 3. Используйте две созданные функции для создания массива перемешанными номерами. На основе этого массива вы можете создать DOM-элементы карточек. У каждой карточки будет свой номер из массива произвольных чисел. Вы также можете создать для этого специальную функцию. count - количество пар.
-
+let counter = 0
 function startGame(count) {
     const cards = createNumbersArray(count);
     const sortCard = shuffle(cards);
     const choosenNumber = []
+    restart = document.getElementById('restart')
+    restart.style.display = 'none'; // в начале игры кнопки нет
+    
     // генерация поля для каждой карты
     sortCard.forEach(element => { 
         const card = document.createElement('div');
@@ -41,13 +44,14 @@ function startGame(count) {
         
         card.addEventListener('click', (e) => {
             card.classList.toggle('toggleCard');
-            checkCards(e, element, choosenNumber);
+            checkCards(e, element, choosenNumber, restart, count);
         })
     });
 }
 
-const checkCards = (element, number, choosenNumber) => {
+const checkCards = (element, number, choosenNumber, restart, count) => {
     const choosenCard = element.target;
+    
     choosenCard.classList.add('choosen');
     const choosenList = document.querySelectorAll('.choosen');
     choosenNumber.push(number)
@@ -58,15 +62,28 @@ const checkCards = (element, number, choosenNumber) => {
                 element.classList.remove('choosen');
                 element.style.pointerEvents = "none";
             });
+            counter += 1
+            console.log('counter ', counter)
             choosenNumber.splice(0,2)
         } else{
             choosenList.forEach((element) => {
                 element.classList.remove('choosen');
                 setTimeout(() => element.classList.toggle('toggleCard'), 1000);
-                console.log(choosenList)
             });
             choosenNumber.splice(0,2)
         }
+        
+    }
+    if (counter == 8) {
+        restart.style.display = 'flex';
+        restart.addEventListener('click', (e) => {
+            cards = document.querySelectorAll('div')
+            for (let i = 0; i < cards.length; i++) {
+                cards[i].remove();
+            }
+            counter = 0;
+            startGame(count);
+        })
     }
 };
 
