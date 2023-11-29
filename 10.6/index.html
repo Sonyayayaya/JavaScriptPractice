@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel ="stylesheet" href = style.css>
+</head>
+<body>
+    <div class="inpitStrings">
+    <div class = "container">
+        <h2 class="titleColumn">Введите данные о новом студенте</h2>
+        <input type="text" id = "name" placeholder = "Введите Ф.И.О."> 
+        <input type="data" id = "age" placeholder = "Введите дату рождения">
+        <input type="year" id = "startEducation" placeholder = "Введите год начала обучения">
+        <input type="text" id = "department" placeholder = "Введите факультет">
+        <button class="buttonSave">Сохранить</button>
+    </div>
+    <div class="filters">
+        <h2 class="titleColumn">Фильтры</h2>
+        <input type="text" id="filterName" placeholder="Введите фамилию, имя или отчество">
+        <input type="text" id="filterDepartment" placeholder="Введите факультет">
+        <input type="data" id="filterStartEducation" placeholder="Введите год начала обучения">
+        <input type="data" id="filterEndEducation" placeholder="Введите год окончания обучения">
+    </div>
+    </div>
+    <table>
+        <tr class="titleTr">
+            <th>Ф.И.О</th>
+            <th>Дата рождения</th>
+            <th>Дата поступления</th>
+            <th>Факультет</th>
+        </tr>
+    </table>
+    <script src="app.js"></script>
+</body>
+</html>

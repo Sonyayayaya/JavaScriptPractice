@@ -1,0 +1,50 @@
+body {
+    height: 100vh;
+    background-blend-mode: screen;
+    background:
+        linear-gradient(rgb(114, 107, 98), transparent),
+        linear-gradient(90deg, skyblue, transparent),
+        linear-gradient(-90deg, rgb(214, 242, 137), transparent);
+    display: flex;
+    background-attachment: fixed;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+}
+.titleColumn {
+    color: lightseagreen;
+}
+.container {
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    float:left;
+    margin-right: 50px;
+}
+.filters {
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    float:right;
+}
+th, tr {
+    border : 5px solid lightseagreen;
+    padding : 15px;
+    background-color: aliceblue;
+}
+
+input {
+    margin-bottom: 10px;
+    border : 3px solid lightseagreen;
+    width: 300px;
+}
+
+#data input, button {
+    padding : 10px;
+}
+
+button {
+    border : 3px solid lightseagreen;
+    width : 90px;
+    margin-bottom: 10px;
+}
