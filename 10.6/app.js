@@ -31,17 +31,26 @@ function validateInput (name, age, startEducation, department)
 }
 function validateDate ( date )
 {
+        Data = new Date(); //текущая дата
+        Year = Data.getFullYear();
+        Month = Data.getMonth();
+        Day = Data.getDate();
+
         var checkedDate = date.split(".");
         if(checkedDate.length!=3)
         {
             return false;
         }
-        //Границы разрешенного периода. Нельзя ввести дату до 1990-го года и позднее 2020-го.
-        if((parseInt(checkedDate[2], 10)<= 1900)||(parseInt(checkedDate[2], 10)>2023))
+        //Границы разрешенного периода. Нельзя ввести дату до 1990-го года и позднее чем за 15 лет до текущего года.
+        if((parseInt(checkedDate[2], 10)<= 1900)||(parseInt(checkedDate[2], 10) > Year - 15))
         {
             return false;
         }
- 
+        //Если введен месяц больше чем текущий месяц месяц текущего года или если введеный день больше дня текущего месяца текущего года больше
+        if ((parseInt(checkedDate[2], 10)=== 1900) & (parseInt(checkedDate[1], 10) > Month) || (parseInt(checkedDate[2], 10)=== 1900) & (parseInt(checkedDate[1], 10) === Month) & (parseInt(checkedDate[0], 10) > Day)){
+            return false;
+        }
+
         var sTmp=checkedDate[2] +'-'+ checkedDate[1]+'-'+ checkedDate[0];
  
         if(new Date(sTmp)=='Invalid Date')
@@ -55,20 +64,10 @@ function validateDate ( date )
 }  
 
 buttonSave.addEventListener('click', () =>{
-    //проверка за заполненность полей
-    // emptyInput = false
-    // contaunerInput.forEach((element) => {
-    //     if (ctrlButton(element))
-    //         emptyInput = true    
-    // });
-
-    // if (emptyInput)
-    //     alert('Незаполненное поле')
-
-    // проверка на дату рождение
-
-
-
+    Data = new Date(); //текущая дата
+    Year = Data.getFullYear();
+    Month = Data.getMonth();
+    Day = Data.getDate();
     let ageNumbers = ageInput.value.split('.')
     const date = new Date(ageNumbers[2], ageNumbers[1], ageNumbers[0]);
 
@@ -79,13 +78,18 @@ buttonSave.addEventListener('click', () =>{
     if (startEducationInput.value < 2000 || startEducationInput.value > 2023 || startEducationInput.value - ageNumbers[2] < 16)
         alert('Неверный год начала обучения')
     let Fullage = 2023 - ageNumbers[2];
+    if (Month < ageNumbers[1]) {
+        Fullage -= 1
+    }
     let numberCourse = 2023 - startEducationInput.value
+    if (Month > 8) {
+        numberCourse += 1
+    }
     let course = numberCourse.toString()
     console.log(course)
-    let endYear = 2023
-    if (course === 4 & ageNumbers[1] >= 9 || course > 4) {
+    let endYear = Number(startEducationInput.value) + 4
+    if (course === 4 & Month >= 7 || course > 4) {
        course = 'закончил'
-       endYear = Number(startEducationInput.value) + 4
     }    
     if (startEducationInput.value + 4 < 2023)
         {endYear = startEducationInput.value + 4}
@@ -148,6 +152,7 @@ filterName.addEventListener('keyup', function (event) {
             }
         }
  })
+ 
 filterDepartment.addEventListener('keyup', function (event) {
     var keyword = this.value;
     keyword = keyword.toUpperCase();
