@@ -85,7 +85,7 @@ buttonSave.addEventListener('click', () =>{
 function clearInput() {
     for (let key in form) {
         form[key].value = '';
-      }
+    }
 }
 
 filterName.addEventListener('keyup', function (event) {
@@ -94,11 +94,11 @@ filterName.addEventListener('keyup', function (event) {
     let allTr = table.getElementsByTagName("tr");
     
     for(let i=1; i < allTr.length; i++){
-        let name_column = allTr[i].getElementsByTagName("th")[0];
-        if(name_column){
-            let name_value = name_column.textContent || name_column.innerText;
-            name_value = name_value.toUpperCase();
-            if(name_value.indexOf(keyword) > -1){
+        let nameColumn = allTr[i].getElementsByTagName("th")[0];
+        if(nameColumn){
+            let nameValue = nameColumn.textContent || nameColumn.innerText;
+            nameValue = nameValue.toUpperCase();
+            if(nameValue.indexOf(keyword) > -1){
                 allTr[i].style.display = ""; // show
             }else{
                 allTr[i].style.display = "none"; // hide
@@ -112,18 +112,18 @@ filterDepartment.addEventListener('keyup', function (event) {
     keyword = keyword.toUpperCase();
     let allTr = table.getElementsByTagName("tr");
         
-        for(let i=1; i < allTr.length; i++){
-            let name_column =allTr[i].getElementsByTagName("th")[3];
-            if(name_column){
-                let name_value = name_column.textContent || name_column.innerText;
-                name_value = name_value.toUpperCase();
-                if(name_value.indexOf(keyword) > -1){
-                    allTr[i].style.display = ""; // show
-                }else{
-                    allTr[i].style.display = "none"; // hide
-                }
+    for(let i=1; i < allTr.length; i++){
+        let nameColumn = allTr[i].getElementsByTagName("th")[3];
+        if(nameColumn){
+            let nameValue = nameColumn.textContent || nameColumn.innerText;
+            nameValue = nameValue.toUpperCase();
+            if(nameValue.indexOf(keyword) > -1){
+                allTr[i].style.display = ""; // show
+            } else{
+                allTr[i].style.display = "none"; // hide
             }
         }
+    }
 })
 
 filterStartEducation.addEventListener('keyup', function (event) {
@@ -132,13 +132,13 @@ filterStartEducation.addEventListener('keyup', function (event) {
     let allTr = table.getElementsByTagName("tr");
         
         for(let i=1; i < allTr.length; i++){
-            let name_column =allTr[i].getElementsByTagName("th")[2];
-            if(name_column){
-                let name_value = name_column.textContent || name_column.innerText;
-                name_value = name_value.toUpperCase();
-                if(name_value.indexOf(keyword) > -1){
+            let nameColumn =allTr[i].getElementsByTagName("th")[2];
+            if(nameColumn){
+                let nameValue = nameColumn.textContent || nameColumn.innerText;
+                nameValue = nameValue.toUpperCase();
+                if(nameValue.indexOf(keyword) > -1){
                     allTr[i].style.display = ""; // show
-                }else{
+                } else{
                     allTr[i].style.display = "none"; // hide
                 }
             }
@@ -151,13 +151,13 @@ filterEndEducation.addEventListener('keyup', function (event) {
     let allTr = table.getElementsByTagName("tr");
         
         for(let i=1; i < allTr.length; i++){
-            let name_column = allTr[i].getElementsByTagName("th")[2];
-            if(name_column){
-                let name_value = name_column.textContent || name_column.innerText;
-                name_value = name_value.toUpperCase();
-                if(name_value.indexOf(keyword) > -1){
+            let nameColumn = allTr[i].getElementsByTagName("th")[2];
+            if(nameColumn){
+                let nameValue = nameColumn.textContent || nameColumn.innerText;
+                nameValue = nameValue.toUpperCase();
+                if(nameValue.indexOf(keyword) > -1){
                     allTr[i].style.display = ""; // show
-                }else{
+                } else{
                     allTr[i].style.display = "none"; // hide
                 }
             }
