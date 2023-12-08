@@ -1,218 +1,168 @@
-let buttonSave = document.querySelector('button');
-let buttonFilter = document.querySelector('#buttonFilter')
-let table = document.querySelector('table');
+const buttonSave = document.querySelector('button');
+const buttonFilter = document.querySelector('#buttonFilter')
+const table = document.querySelector('table');
 
-let contaunerInput = document.querySelector('#container')
-let nameInput = document.querySelector('#name')
-
-
-let ageInput = document.querySelector('#age')
-let startEducationInput = document.querySelector('#startEducation')
-let departmentInput = document.querySelector('#department')
-
-let filters = document.querySelector('#filters')
-let filterName = document.querySelector('#filterName')
-let filterDepartment = document.querySelector('#filterDepartment')
-let filterStartEducation = document.querySelector('#filterStartEducation')
-let filterEndEducation = document.querySelector('#filterEndEducation')
+const contaunerInput = document.querySelector('#container')
+const form = {
+    nameInput : document.querySelector('#name'),
+    ageInput : document.querySelector('#age'),
+    startEducationInput : document.querySelector('#startEducation'),
+    departmentInput : document.querySelector('#department')
+}
+const filters = document.querySelector('#filters')
+const filterName = document.querySelector('#filterName')
+const filterDepartment = document.querySelector('#filterDepartment')
+const filterStartEducation = document.querySelector('#filterStartEducation')
+const filterEndEducation = document.querySelector('#filterEndEducation')
 
 function ctrlButton() {
     if (this.value.trim().length === 0)
-        return true
-    else 
-        return false
+        return this.value.trim().length
 }
 function validateInput (name, age, startEducation, department) 
 {
-    if (name === '' || age === '' || startEducation === '' || department === '')
-        {return true}
-    else
-        {return false}
+    return name === '' || age === '' || startEducation === '' || department === ''
 }
-function validateDate ( date )
-{
-        Data = new Date(); //текущая дата
-        Year = Data.getFullYear();
-        Month = Data.getMonth();
-        Day = Data.getDate();
-
-        var checkedDate = date.split(".");
-        if(checkedDate.length!=3)
-        {
-            return false;
-        }
-        //Границы разрешенного периода. Нельзя ввести дату до 1990-го года и позднее чем за 15 лет до текущего года.
-        if((parseInt(checkedDate[2], 10)<= 1900)||(parseInt(checkedDate[2], 10) > Year - 15))
-        {
-            return false;
-        }
-        //Если введен месяц больше чем текущий месяц месяц текущего года или если введеный день больше дня текущего месяца текущего года больше
-        if ((parseInt(checkedDate[2], 10)=== 1900) & (parseInt(checkedDate[1], 10) > Month) || (parseInt(checkedDate[2], 10)=== 1900) & (parseInt(checkedDate[1], 10) === Month) & (parseInt(checkedDate[0], 10) > Day)){
-            return false;
-        }
-
-        var sTmp=checkedDate[2] +'-'+ checkedDate[1]+'-'+ checkedDate[0];
- 
-        if(new Date(sTmp)=='Invalid Date')
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-}  
 
 buttonSave.addEventListener('click', () =>{
-    Data = new Date(); //текущая дата
-    Year = Data.getFullYear();
-    Month = Data.getMonth();
-    Day = Data.getDate();
-    let ageNumbers = ageInput.value.split('.')
-    const date = new Date(ageNumbers[2], ageNumbers[1], ageNumbers[0]);
-
-    if (!validateDate(ageInput.value)){
-        alert('дата введена неверно')}
-    
-    // проверка на дату начала обучения
-    if (startEducationInput.value < 2000 || startEducationInput.value > 2023 || startEducationInput.value - ageNumbers[2] < 16)
-        alert('Неверный год начала обучения')
-    let Fullage = 2023 - ageNumbers[2];
-    if (Month < ageNumbers[1]) {
-        Fullage -= 1
+    data = new Date(); //текущая дата
+    year = data.getFullYear();
+    month = data.getMonth();
+    day = data.getDate();
+    ageNumbers = form['ageInput'].value.split('-')
+    const date = form['ageInput'].value;
+    console.log(form['ageInput'].value, 'ff')
+    if(ageNumbers[0] <= 1900){
+        alert('Неверно введена дата рождения')
+        clearInput()
     }
-    let numberCourse = 2023 - startEducationInput.value
-    if (Month > 8) {
+    // проверка на дату начала обучения
+    if (form['startEducationInput'].value < 2000 || form['startEducationInput'].value > 2023 || form['startEducationInput'].value - ageNumbers[0] < 16){
+        alert('Неверный год начала обучения')
+        clearInput()
+    }
+
+    let fullage = 2023 - ageNumbers[0];
+    if (month < ageNumbers[1]) {
+        fullage -= 1
+    }
+    let numberCourse = 2023 - form['startEducationInput'].value
+    if (month > 8) {
         numberCourse += 1
     }
     let course = numberCourse.toString()
     console.log(course)
-    let endYear = Number(startEducationInput.value) + 4
-    if (course === 4 & Month >= 7 || course > 4) {
+    let endYear = Number(form['startEducationInput'].value) + 4
+    if (course === 4 & month >= 7 || course > 4) {
        course = 'закончил'
     }    
-    if (startEducationInput.value + 4 < 2023)
-        {endYear = startEducationInput.value + 4}
-    let name = nameInput.value;
-    let age = ageInput.value + ' ('+ Fullage + ')';
-    let startEducation = startEducationInput.value + '-' + endYear + ' (' + course + ' курс)';
-    let department = departmentInput.value;    
+    if (form['startEducationInput'].value + 4 < 2023){
+        endYear = form['startEducationInput'].value + 4
+    }
+    let name = form['nameInput'].value;
+    let age = form['ageInput'].value + ' ('+ fullage + ')';
+    let startEducation = form['startEducationInput'].value + '-' + endYear + ' (' + course + ' курс)';
+    let department = form['departmentInput'].value;    
 
     let stringTr = document.createElement('tr')
     stringTr.classList.add('rowsTr')
-    let nameContainer = document.createElement('th')
-    let ageContainer = document.createElement('th')
-    let startEducationContainer = document.createElement('th')
-    let departmentContainer = document.createElement('th')
-
-    nameContainer.textContent = name
-    ageContainer.textContent = age
-    startEducationContainer.textContent = startEducation
-    departmentContainer.textContent = department
-    
-    stringTr.appendChild(nameContainer)
-    stringTr.appendChild(ageContainer)
-    stringTr.appendChild(startEducationContainer)
-    stringTr.appendChild(departmentContainer)
-    console.log(stringTr)
-    table.appendChild(stringTr)  
-    if (validateInput(name, age, startEducation, department) || !validateDate(ageInput.value) || startEducationInput.value < 2000 || startEducationInput.value > 2023 || startEducationInput.value - ageNumbers[2] < 16) {
+    stringTr.innerHTML = `
+        <th>${name}</th>
+        <th>${age}</th>
+        <th>${startEducation}</th>
+        <th>${department}</th>
+    `
+     
+    if (validateInput(name, age, startEducation, department) || form['startEducationInput'].value < 2000 || form['startEducationInput'].value > 2023 || form['startEducationInput'].value - ageNumbers[2] < 16) {
         alert('Не все поля заполнены')
-        table.removeChild(table.lastChild);
         clearInput()
+    } else {
+        table.appendChild(stringTr)
     }
     clearInput()
 })
 
 function clearInput() {
-     // очищаем поля для ввода
-    nameInput.value = ""
-    ageInput.value = ""
-    startEducationInput.value = ""
-    departmentInput.value = ""
-    name = ""
-
+    for (let key in form) {
+        form[key].value = '';
+      }
 }
 
 filterName.addEventListener('keyup', function (event) {
-    var keyword = this.value;
+    let keyword = this.value;
     keyword = keyword.toUpperCase();
-        var all_tr = table.getElementsByTagName("tr");
-        console.log(all_tr)
-        for(var i=1; i<all_tr.length; i++){
-            var name_column = all_tr[i].getElementsByTagName("th")[0];
-            if(name_column){
-                var name_value = name_column.textContent || name_column.innerText;
-                name_value = name_value.toUpperCase();
-                if(name_value.indexOf(keyword) > -1){
-                    all_tr[i].style.display = ""; // show
-                }else{
-                    all_tr[i].style.display = "none"; // hide
-                }
+    let allTr = table.getElementsByTagName("tr");
+    
+    for(let i=1; i < allTr.length; i++){
+        let name_column = allTr[i].getElementsByTagName("th")[0];
+        if(name_column){
+            let name_value = name_column.textContent || name_column.innerText;
+            name_value = name_value.toUpperCase();
+            if(name_value.indexOf(keyword) > -1){
+                allTr[i].style.display = ""; // show
+            }else{
+                allTr[i].style.display = "none"; // hide
             }
         }
+    }
  })
  
 filterDepartment.addEventListener('keyup', function (event) {
-    var keyword = this.value;
+    let keyword = this.value;
     keyword = keyword.toUpperCase();
-        var all_tr = table.getElementsByTagName("tr");
-        console.log(all_tr)
-        for(var i=1; i<all_tr.length; i++){
-            var name_column = all_tr[i].getElementsByTagName("th")[3];
+    let allTr = table.getElementsByTagName("tr");
+        
+        for(let i=1; i < allTr.length; i++){
+            let name_column =allTr[i].getElementsByTagName("th")[3];
             if(name_column){
-                var name_value = name_column.textContent || name_column.innerText;
+                let name_value = name_column.textContent || name_column.innerText;
                 name_value = name_value.toUpperCase();
                 if(name_value.indexOf(keyword) > -1){
-                    all_tr[i].style.display = ""; // show
+                    allTr[i].style.display = ""; // show
                 }else{
-                    all_tr[i].style.display = "none"; // hide
+                    allTr[i].style.display = "none"; // hide
                 }
             }
         }
 })
 
 filterStartEducation.addEventListener('keyup', function (event) {
-    var keyword = this.value;
+    let keyword = this.value;
     keyword = keyword.toUpperCase();
-        var all_tr = table.getElementsByTagName("tr");
-        console.log(all_tr)
-        for(var i=1; i<all_tr.length; i++){
-            var name_column = all_tr[i].getElementsByTagName("th")[2];
+    let allTr = table.getElementsByTagName("tr");
+        
+        for(let i=1; i < allTr.length; i++){
+            let name_column =allTr[i].getElementsByTagName("th")[2];
             if(name_column){
-                var name_value = name_column.textContent || name_column.innerText;
+                let name_value = name_column.textContent || name_column.innerText;
                 name_value = name_value.toUpperCase();
                 if(name_value.indexOf(keyword) > -1){
-                    all_tr[i].style.display = ""; // show
+                    allTr[i].style.display = ""; // show
                 }else{
-                    all_tr[i].style.display = "none"; // hide
+                    allTr[i].style.display = "none"; // hide
                 }
             }
         }
 })
 
 filterEndEducation.addEventListener('keyup', function (event) {
-    var keyword = this.value;
+    let keyword = this.value;
     keyword = keyword.toUpperCase();
-        var all_tr = table.getElementsByTagName("tr");
-        console.log(all_tr)
-        for(var i=1; i<all_tr.length; i++){
-            var name_column = all_tr[i].getElementsByTagName("th")[2];
+    let allTr = table.getElementsByTagName("tr");
+        
+        for(let i=1; i < allTr.length; i++){
+            let name_column = allTr[i].getElementsByTagName("th")[2];
             if(name_column){
-                var name_value = name_column.textContent || name_column.innerText;
+                let name_value = name_column.textContent || name_column.innerText;
                 name_value = name_value.toUpperCase();
                 if(name_value.indexOf(keyword) > -1){
-                    all_tr[i].style.display = ""; // show
+                    allTr[i].style.display = ""; // show
                 }else{
-                    all_tr[i].style.display = "none"; // hide
+                    allTr[i].style.display = "none"; // hide
                 }
             }
         }
 })
-
-//  nameContainer.addEventListener('keyup', function (event) {
-
-//  })
 
 const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
 
@@ -220,7 +170,7 @@ const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
     v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
     )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
 
-// do the work...
+
 document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
     const table = th.closest('table');
     Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
