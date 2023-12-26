@@ -1,0 +1,128 @@
+[
+    {
+        "id": "1",
+        "name": "Сет 'Фаст-фуд'",
+        "category" : "Фаст-фуд",
+        "image": "1.png",
+        "price": 1450
+    },
+    {
+        "id": "2",
+        "name": "Паста",
+        "category" : "Второе",
+        "image": "2.png",
+        "price": 800
+    },
+    {
+        "id": "3",
+        "name": "Пицца с оливками",
+        "category" : "Первое",
+        "image": "3.png",
+        "price": 700
+    },
+    {
+        "id": "4",
+        "name": "Куриные ножки (6 шт)",
+        "category" : "Фаст-фуд",
+        "image": "4.png",
+        "price": 600
+    },
+    {
+        "id": "5",
+        "name": "Овощной салат",
+        "category" : "Салаты",
+        "image": "5.png",
+        "price": 550
+    },
+    {
+        "id": "6",
+        "name": "Борщ",
+        "category" : "Первое",
+        "image": "6.png",
+        "price": 700
+    },
+    {
+        "id": "7",
+        "name": "Рис на пару",
+        "category" : "Второе",
+        "image": "7.png",
+        "price": 1450
+    },
+    {
+        "id": "8",
+        "name": "Мороженое",
+        "category" : "Десерты",
+        "image": "8.png",
+        "price": 450
+    },
+    {
+        "id": "9",
+        "name": "Брауни",
+        "category" : "Десерты",
+        "image": "9.png",
+        "price": 500
+    },
+    {
+        "id": "10",
+        "name": "Пончики",
+        "category" : "Десерты",
+        "image": "10.png",
+        "price": 500
+    },
+    {
+        "id": "11",
+        "name": "Фруктовый салат",
+        "category" : "Салаты",
+        "image": "11.png",
+        "price": 750
+    },
+    {
+        "id": "12",
+        "name": "Яишница",
+        "category" : "Второе",
+        "image": "12.png",
+        "price": 400
+    },
+    {
+        "id": 13,
+        "name": "Жаркое из гуся",
+        "category" : "Второе",
+        "image": "13.png",
+        "price": 800
+    },
+    {
+        "id": "14",
+        "name": "Шашлык из баранины",
+        "category" : "Второе",
+        "image": "14.png",
+        "price": 1100
+    },
+    {
+        "id": 15,
+        "name": "Копчёный лосось",
+        "category" : "Второе",
+        "image": "15.png",
+        "price": 900
+    },
+    {
+        "id": "16",
+        "name": "Шаурма",
+        "category" : "Фаст-фуд",
+        "image": "16.png",
+        "price": 400
+    },
+    {
+        "id": "17",
+        "name": "Суп из чечевицы",
+        "category": "Первое",
+        "image": "17.png",
+        "price": 350
+    },
+    {
+        "id": "18",
+        "name": "Хенкали",
+        "category" : "Второе",
+        "image": "18.png",
+        "price": 250
+    }
+]

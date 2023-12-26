@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="">  
+    <div class="container">
+        <header>
+            <h1>Гусь и гусыня</h1>
+            <div class="shopping">
+                <img src="img/bin.png">
+                <span class="quantity">0</span>
+            </div>
+        </header>
+        <div class="wrapper">
+            <div id="buttons">
+              <button class="button-value" onclick="filterProduct('Всё')">Всё</button>
+              <button class="button-value" onclick="filterProduct('Первое')">
+                Первое
+              </button>
+              <button class="button-value" onclick="filterProduct('Второе')">
+                Второе
+              </button>
+              <button class="button-value" onclick="filterProduct('Салаты')">
+                Салаты
+              </button>
+              <button class="button-value" onclick="filterProduct('Десерты')">
+                Десерты
+              </button>
+              <button class="button-value" onclick="filterProduct('Фаст-фуд')">
+                Фаст-фуд
+              </button>
+            </div>
+            <div id="products"></div>
+          </div>
+        <div class="list">
+          
+        </div>
+    </div>
+    
+    <div class="card">
+        <h1>Товары</h1>
+        <ul class="listCard">
+        </ul>
+        <div class="checkOut">
+            <div class="total">0</div>
+            <div class="haveOrder">Заказать</div>
+            <div class="closeShopping">Закрыть</div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

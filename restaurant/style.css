@@ -1,0 +1,164 @@
+html {
+
+    background-image: url(img/goose.jpg);
+    background-repeat: repeat-Y;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100%;
+    width: 100%;
+    
+}
+.button-value {
+    border-radius: 10px;
+    background-color:  #dde3e4;
+    color: #000000;
+    width: 194px;
+    padding: 10px;
+}
+body{
+    font-family: system-ui;
+}
+.container{
+    width: 1200px;
+    margin: auto;
+    transition: 0.5s;
+}
+header{
+    display: grid;
+    grid-template-columns: 1fr 70px;
+    margin-top: 40px;
+}
+header .shopping{
+    position: relative;
+    text-align: right;
+}
+header .shopping img{
+    width: 40px;
+}
+header .shopping {
+    top: 20px;
+}
+header .shopping span{
+    background: rgb(191, 6, 6);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    position: absolute;
+    top: -5px;
+    left: 80%;
+    padding: 3px 10px;
+}
+header h1 {
+    font: italic small-caps bold 26px/2 cursive;
+}
+.list{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 40px;
+    row-gap: 40px;
+    margin-top: 50px;
+}
+.list .item{
+    border-radius: 15px;
+    text-align: center;
+    background-color: #dde3e4;
+    padding: 20px;
+    box-shadow: 0 50px 50px #757676;
+    letter-spacing: 1px;
+}
+.list .item img{
+    width: 90%;
+    height: 430px;
+    object-fit: cover;
+}
+.list .item .title{
+    font: italic small-caps bold 16px/2 cursive;
+    font-weight: 600;
+}
+.list .item .price{
+    font: italic small-caps 14px/2 cursive;
+    margin: 10px;
+}
+.list .item button{
+    border-radius: 10px;
+    background-color: #5f739a;
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+}
+.card{
+    position: fixed;
+    top: 0;
+    left: 100%;
+    width: 500px;
+    background-color: #232d3f;
+    height: 100vh;
+    transition: 0.5s;
+    font: italic small-caps 16px/2 cursive;
+}
+.active .card{
+    left: calc(100% - 500px);
+}
+.card h1{
+    color: #1961f0;
+    font-weight: 100;
+    margin: 0;
+    padding: 0 20px;
+    height: 80px;
+    font: italic small-caps 32px/2 cursive;
+    align-items: center;
+    text-align: center;
+}
+.card .checkOut{
+    font: italic small-caps 16px/2 cursive;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+}
+.card .checkOut div{
+    background-color: #0ea7e8;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+.card .checkOut div:nth-child(2){
+    background-color: #1C1F25;
+    color: #fff;
+}
+.listCard li{
+    display: grid;
+    grid-template-columns: 100px repeat(3, 1fr);
+    color: #fff;
+    row-gap: 10px;
+}
+.listCard li div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.listCard li img{
+    width: 90%;
+}
+.listCard li button{
+    background-color: #fff5;
+    border: none;
+}
+.listCard .count{
+    margin: 0 10px;
+}
+.hide {
+    display: none;
+}
